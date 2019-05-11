@@ -1,0 +1,255 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>thermostat</title>
+	
+	<!-- Bootstrap Core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/css/half-slider.css" rel="stylesheet">
+	<link href="/css/bootstrap-slider.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap-slider.js"></script>
+	
+	<style type="text/css">
+		${demo.css}
+		.well {
+			background-color: #E0E0E0;
+		}
+		
+		#ex1Slider .slider-selection {
+   			background: #BABABA;
+  		}
+		
+		#ex2Slider .slider-track-low {
+   			background: #BABABA;
+  		}
+		
+		#ex2Slider .slider-track-high {
+   			background: #BABABA;
+  		}
+		
+		#popin {
+			background-color: #fff;
+			border-radius: 8px;
+			box-shadow: 0 0 20px #999;
+			padding: 10px;
+		}
+	</style>
+	
+	<script type="text/javascript">
+    	$(document).ready(function() {
+    		function affiche( data ) {               // fonction pour afficher les données reçues
+				console.log(data);                   // affichage de data dans la console
+				
+				$('#SliderRange').text( parseFloat(data.Tl) + " : " + parseFloat(data.Th));
+				var s = '['+parseFloat(data.Tl) + ',' + parseFloat(data.Th)+']';
+				console.log(s);
+				$('#intervalle').attr('data-slider-value',s);
+				$("#intervalle").slider();
+			}	
+			
+	        $.getJSON(
+					"/api/temperature_json.cgi", // Le fichier cible côté serveur. data au format Json
+					affiche 
+				);
+			
+			$("#intervalle").on("slide", function(slideEvt) {
+				$("#SliderRange").text(slideEvt.value[0]+" : "+slideEvt.value[1]);
+				console.log(slideEvt.value[0]);
+				console.log(slideEvt.value[1]);
+				$("#Tl").val(slideEvt.value[0]);
+				$("#Th").val(slideEvt.value[1]);
+			});
+			
+
+	        
+		});
+    </script>
+	
+
+	
+</head>
+<body>
+	
+	<!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/index.html">Philippe S</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/index.html">Accueil</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Raspberry pi<span class="caret"></span></a>
+			<ul class="dropdown-menu">
+                            <li><a href="/gpio/gpio.html">GPIO</a></li>
+                            <li><a href="/gpio/traffic_light.html">Traffic light</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/gpio/temperature2.html">Température</a></li>
+                            <li><a href="/ajax/temperature/graphTemp4.html">Graphique Température</a></li>
+                            <li><a href="/ajax/temperature/thermostat.html">Réglage Thermostat</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/documentation/">Fiches aide mémoire</a></li>
+							<li><a href="https://philippes.ddns.net/phpmyadmin">phpMyAdmin</a></li>
+			</ul>
+                    </li>
+                    <li>
+                        <a href="/gmaps.html">Google Map</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/PhilippeSimier">GitHub</a>
+                    </li>
+					
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Half Page Image Background Carousel Header -->
+    <header id="myCarousel" class="carousel slide">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for Slides -->
+        <div class="carousel-inner">
+            <div style="position: absolute; width: 140px; height: 170px; z-index: 1; left: 10%; top: 25%">
+				<img alt="Rapberry" src="/images/raspberry.png" style="width: 100%; height: 100%;"/>
+			</div>
+			<div class="item active">
+                <!-- Set the first background image using inline CSS below. -->
+                <div class="fill" style="background-image:url('/images/raspberry.jpeg');"></div>
+                <div class="carousel-caption">
+                    <h2>Raspberry pi</h2>
+                </div>
+            </div>
+            <div class="item">
+                <!-- Set the second background image using inline CSS below. -->
+                <div class="fill" style="background-image:url('/images/home_page.jpg');"></div>
+                <div class="carousel-caption">
+                    <h2>Learning</h2>
+                </div>
+            </div>
+            <div class="item">
+                <!-- Set the third background image using inline CSS below. -->
+                <div class="fill" style="background-image:url('/images/traffic-lights.jpg');"></div>
+                <div class="carousel-caption">
+                    <h2>Traffic light</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="icon-prev"></span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="icon-next"></span>
+        </a>
+
+    </header>
+	
+	<!-- Page Content -->
+    <div  style="padding:15px;">
+		<div class="row">
+			<section class="col-sm-6" style="padding:15px;">
+				<h4>Réglage des seuils du thermostat</h4>
+				
+        			<div id="popin">
+						<form method="post" action="/api/thermostat">
+						<p>Valeurs : <span id="SliderRange"></span></p>
+						<div class="well">
+							<input id="intervalle" type="text" class="span2" value="" 
+								  data-slider-id="ex2Slider"
+								  data-slider-min="-10" 
+								  data-slider-max="30" 
+								  data-slider-step="0.25" 
+								  data-slider-value="[22,25]"/> 
+						</div>
+						<input id="Tl" type="hidden" name="Tl" value="" />
+						<input id="Th" type="hidden" name="Th" value="" />
+						<button type="submit" name="envoyer" value="reglage" class="btn btn-success">Envoyer</button>
+						</form>
+						
+					</div>
+				
+				
+				
+				
+			</section>
+			
+			<section class="col-sm-6">
+						 <div class="page-header">
+							<h1>Une maison <small>plus connectée que jamais</small> </h1>
+						 </div>	
+						 <p>Maison ou appartement, en ville ou à la campagne, quelque soit l’endroit où nous vivons, 
+						 nous cherchons des solutions simples pour  contrôler son chauffage ou sa climatisation. 
+						 l’Internet des Objets propose des solutions pour gérer la consommation énergétique 
+						 du domicile grâce à l’utilisation d’un thermostat connecté.  
+						 <p/>
+						 <p>le thermostat connecté est défini comme un dispositif domotique chargé de contrôler à distance le chauffage, 
+						 et parfois la climatisation d’une maison. Il permet aussi de programmer la température en fonction d'un calendrier.
+						 
+
+						</p>
+			</section>
+			
+		</div>		
+
+		<!-- Footer -->
+		<footer>
+			<hr />
+			<div class="row">
+				<div class="col-lg-12">
+					<p>Copyright &copy; Section Snir Lycée Touchard le Mans</p>
+				</div>
+			</div>
+		<!-- /.row -->
+		</footer>
+
+    </div>
+    <!-- /.container -->
+
+    
+    
+    
+
+    <!-- Script to Activate the Carousel -->
+	<!-- Placed at the end of the document so the pages load faster -->
+    <script>
+    $('.carousel').carousel({
+        interval: 10000 //changes the speed
+    })
+    </script>
+	  
+  
+</body>
+</html>

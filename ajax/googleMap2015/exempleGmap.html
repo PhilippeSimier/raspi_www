@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Api googleMap/GMap</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <script src="/js/jquery.js" type="text/javascript"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
+        <script src="js/libs/gmaps.js/gmaps.js" type="text/javascript"></script>
+        <script src="js/mongmap.js" type="text/javascript"></script>
+        <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #carte { height: 600px; width: 800px; background-color: antiquewhite;}
+    </style>
+    </head>
+    <body>
+        <form>
+            adresse
+            <input type="text" id="adresse"/>
+            <input type="button" value="placer adresse" id="majMap" />
+        </form>
+        <br/>
+        <div id="carte"></div>
+       
+    </body>
+</html>

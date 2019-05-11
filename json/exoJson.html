@@ -1,0 +1,33 @@
+<html>
+	<head>
+	<meta charset="UTF-8">
+
+	</head>
+	<body>
+		<div id="images" style="height: 300px"></div>
+		<script>
+		    // exemple 1
+			var courses = {
+				"fruits": [
+					{ 	"kiwis": 3,
+						"mangues": 4,
+						"pommes": null
+					},
+					{ "panier": true 
+					}
+				],
+				"legumes":{ 
+					"patates": "amandine",
+					"figues": "de barbarie",
+					"poireaux": false
+				}
+			};
+			console.log(courses);
+			// exemple 2
+			var textejson = '{"liste":[{"kiwis": 3},{"pommes":"golden"}],"where": "Supermarché"}';
+            var courses = JSON.parse(textejson);
+            console.log(courses);
+			
+		</script>
+	</body>
+</html>

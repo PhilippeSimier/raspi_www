@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Regex ?</title>
+        <meta charset="UTF-8">
+	</head>
+	<body>
+    <script>
+		var maRegex = /(\d+[.]\d*)$/gm;
+		var reg = /toto/;
+		var resultat = maRegex.test("125.3");
+		alert('125.3 ->' + resultat);
+		var resultat = maRegex.test("125.3+28");
+		alert('125.3+28 ->' + resultat);
+    </script>
+	
+    </body>
+</html>	

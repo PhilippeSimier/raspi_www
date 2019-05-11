@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!--
+    Un petit jeu en jQurey. 
+-->
+<html>
+    <head>
+        <title>Les petits papiers</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <style type="text/css">
+            <!--
+            body{
+                background-image:url(herbes.jpg);
+			}
+			#container{
+				position: relative;
+			}
+			.letter{
+				position: absolute;
+				width: 40px;
+				height: 40px;
+				font: 24px bold verdana;
+				background-color: yellow;
+				text-align: center;
+				padding: 10px;
+				box-shadow: 5px 5px 16px 0px rgba(0,0,0,0.6);
+				border-radius: 4px;
+			}
+			#score{
+				background-color: black;
+				color:white;
+				font: 24px bold verdana;
+			}
+			#countdown{
+				background-color: black;
+				color:white;
+				font: 24px bold verdana;
+			}
+            -->
+        </style>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		
+        
+        <script>
+          $(function() {
+			var score = 0;
+			var seconde = 120;
+			var w = (window.innerWidth  * 0.9);
+			var h = (window.innerHeight * 0.85);
+			var bas = h + "px";
+			
+			$("#start").click(function(){   // quand on clique sur start
+				$(this).fadeOut("fast");	// on efface rapidement ce bouton 
+				$("#score").show();			// on affiche le score du jeu
+				generateLetters();
+				timer();	                // on lance le timer du jeu
+			});
+			
+			function timer(){
+					
+					$("#countdown").html(seconde);
+					seconde--;
+					if(seconde > 0){
+						setTimeout(timer, 1000);
+					}
+					else{
+						$("#countdown").html("Fin !");
+					}
+			}
+			
+			$(document).keydown(function(event){   					// quand on appuie sur une touche du clavier
+				var lettre = String.fromCharCode(event.keyCode);   	//on récupère le code de la lettre clavier
+				
+				if ((event.keyCode >= 48 || event.keyCode==32)&&(seconde>0)){
+					var classeLetter = '.letter'+lettre;
+					console.log(event.keyCode + ' -> ' + classeLetter +' ');                // on affiche le code dans la console
+					$(classeLetter).animate({"top" : bas, "opacity" : 0.5}, "slow");  	    //on fait tomber la lettre en bas
+					$(classeLetter).fadeOut("slow").hide('slow',function(){                 //on augmente le score
+					score += 5;
+					$("#score span").html(score);
+					$(this).remove();
+					});
+				}	
+				
+			});
+			
+			function generateLetters(){
+				
+				var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+				
+				var randomString = '';
+				var num = Math.floor(Math.random() * chars.length);     // une position au hasard dans la chaine
+				randomString = chars.substring(num,num+1);              // on extrait la lettre à la position
+								
+				var top = Math.floor(Math.random() * h);				// une position au hasard sur l'écran
+				var left = Math.floor(Math.random() * w);
+				if (top > 40) {top -= 40;}
+				if (left > 40) {left -= 40;}
+				degrees = Math.floor(Math.random() * 20)-10;             // tirage au sort de la position angulaire
+				$("#container").append(
+'<span class="letter letter'+ randomString + '" style="left: '+ left + 'px; top: ' + top +'px; background-color:#'+generateColor()+'; transform : rotate('+ degrees +'deg);">'+ randomString + '</span>');
+				if (seconde > 0){
+					//console.log(seconde);
+					setTimeout(generateLetters, 500);
+				}	
+			}
+			
+			// Fonction pour genérer une couleur aléatoire
+			function generateColor(){
+				var color = '';
+				var values = ['f', 'e', 'd', 'c', 'b', 'a', '9', '8', '7', '6', '0', '4', '3', '2', '1', '5'];
+				for (c=1; c<=3; c++){
+					var pos = Math.floor(Math.random() * 10);
+					color += values[pos];
+				}
+				return color;
+			}
+			
+			jQuery.fn.rotate = function(degrees) {
+				$(this).css({'-webkit-transform' : 'rotate('+ degrees +'deg)',
+                 '-moz-transform' : 'rotate('+ degrees +'deg)',
+                 '-ms-transform' : 'rotate('+ degrees +'deg)',
+                 'transform' : 'rotate('+ degrees +'deg)'});
+			};
+			
+          });
+        </script>
+    </head>
+    <body>
+        <div class="container">
+
+			<div class="row"> 
+				<div id="score" class="col-xs-8"> Votre score : <span>0</span></div>
+				<div id="countdown" class="col-xs-4">0</div>
+			
+				<div class="col-xs-12">
+					<button id="start" type="button" class="btn btn-success"> Lancer le jeu, taper les tous !! </button>
+				</div>
+			</div>	
+			<div class="col-xs-12" id="container">
+			</div>
+        </div>
+    </body>
+</html>

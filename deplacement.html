@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>jQuery Move an Element to Left/Right/Up/Down Using Arrow Keys</title>
+<style type="text/css">
+    .box{
+        width: 100px;
+        height: 100px;
+        position: relative;
+        margin: 200px auto 0;
+        background: url("../images/mushroom.jpg") yellowgreen;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).keydown(function(e){
+    switch (e.which){
+    case 37:    //left arrow key
+        $(".box").finish().animate({
+            left: "-=50"
+        });
+        break;
+    case 38:    //up arrow key
+        $(".box").finish().animate({
+            top: "-=50"
+        });
+        break;
+    case 39:    //right arrow key
+        $(".box").finish().animate({
+            left: "+=50"
+        });
+        break;
+    case 40:    //bottom arrow key
+        $(".box").finish().animate({
+            top: "+=50"
+        });
+        break;
+    }
+});
+</script>
+</head>
+<body>
+    <p><strong>Note:</strong> Click inside the output viewport and press the arrow keys to move the box.</p>
+    <div class="box"></div>
+</body>
+</html>

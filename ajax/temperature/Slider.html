@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Examples for bootstrap-slider plugin">
+    <meta name="author" content="">
+
+    <title>Slider for thermostat</title>
+
+    <!-- core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-slider.css" rel="stylesheet">
+	
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap-slider.js"></script>
+
+    <!-- Custom styles for this template -->
+    <style type="text/css">
+    	.well {
+			background-color: #E0E0E0;
+		}
+		
+		#ex1Slider .slider-selection {
+   			background: #BABABA;
+  		}
+		
+		#ex2Slider .slider-track-low {
+   			background: #BABABA;
+  		}
+		
+		#ex2Slider .slider-track-high {
+   			background: #BABABA;
+  		}
+    </style>
+	
+	
+    <script type="text/javascript">
+    	$(document).ready(function() {
+    		/* Example value */
+	    	$('#valeur').slider();
+			$("#valeur").on("slide", function(slideEvt) {
+				$("#SliderVal").text(slideEvt.value);
+			});
+
+	    	/* Example range */
+	        $("#intervalle").slider();
+			$("#intervalle").on("slide", function(slideEvt) {
+				$("#SliderRange").text(slideEvt.value);
+			});
+
+	        
+		});
+    </script>
+	
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <div class="jumbotron">
+        <h1>Slider pour Bootstrap <small>bootstrap-slider.js</small></h1>
+		    <div class="examples">
+				<div>
+					<h3>Sélection simple:</h3>
+					<p>Valeur : <span id="SliderVal">25</span></p>
+					<div class="well">
+						<input id="valeur" type="text"
+						data-slider-id="ex1Slider"  
+						data-slider-min="0" 
+						data-slider-max="100" 
+						data-slider-step="1" 
+						data-slider-value="25"/>
+					</div>
+						
+				</div>
+
+				<div>
+					<h3>Sélection d'un intervalle:</h3>
+					<p>Valeurs : <span id="SliderRange">25,50</span></p>
+					<div class="well">
+						<input id="intervalle" type="text" class="span2" value="" 
+							  data-slider-id="ex2Slider"
+							  data-slider-min="0" 
+							  data-slider-max="100" 
+							  data-slider-step="1" 
+							  data-slider-value="[25,50]"/> 
+					</div>
+				</div>
+			</div> <!-- /examples -->
+      </div>
+
+ 
+    </div> <!-- /container -->
+
+</body></html>

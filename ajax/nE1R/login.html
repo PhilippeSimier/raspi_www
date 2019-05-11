@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+        <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>exemple ajax identification</title>
+        <script src="/js/jquery.js" type="text/javascript"></script>
+        <script src="ajaxIdent.js" type="text/javascript"></script>
+		<link href="css/logmdp.css" rel="stylesheet" type="text/css"/>
+        <style>
+            .pastilleGrise{
+                width: 20px;
+                height: 20px;
+                background-color: lightgrey;
+                border-radius: 10px;
+            }
+        </style>
+        
+    </head>
+    
+    <body>
+        <div>
+            <form id="formulaireLogin">
+                <label for="login">Login</label>
+                <input type="text" id="login" name="login" />
+                <br />
+                <label for="mdp">mdp</label>
+                <input type="password" id="mdp" name="mdp" />
+                <br />
+                <input type="button" value="identification" id="verifLogin"/>
+                <br />
+                <p id="pastille" class="pastilleGrise"> </p>
+                <p id="bidon"></p>
+            </form>
+            
+        </div>
+    </body>
+</html>
