@@ -10,11 +10,11 @@
     <head>
         <meta content="text/html; charset=UTF-8" http-equiv="content-type">
 	<!-- Bootstrap CSS version 4.1.1 -->
-        <link rel="stylesheet" href="./css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="./scripts/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="./css/ruche.css" />
-	<title>Matlab Visualization</title>
+	<script src="scripts/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="css/ruche.css" />
+	<title><?php echo $_GET['name'] ?></title>
     </head>
     <body>
 	<?php require_once 'menu.php'; ?>
@@ -29,6 +29,7 @@
 			    </div>
 			</div>
 		</div>
+                
 	<?php require_once 'piedDePage.php'; ?>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<?php 
+<?php
     session_start();
 	require_once('definition.inc.php');
     $ini  = parse_ini_file(CONFIGURATION, true);
@@ -15,10 +15,10 @@
     <!-- Bootstrap CSS version 4.1.1 -->
     <link rel="stylesheet" href="/Ruche/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/Ruche/css/ruche.css" />
-	
+
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="/Ruche/scripts/bootstrap.min.js"></script> 
-    
+
  </head>
 
  <body>
@@ -37,11 +37,11 @@
 					</thead>
 					<tbody>
 						<?php
-							$file = '/var/log/Ruche/activity.log';
-						 
+						$file = '/var/log/Ruche/activity.log';
+						if (file_exists($file)) {
 							$file_contents = array_reverse(file($file));
 							$nb = 1;
-							
+
 							foreach($file_contents as $line_num => $line){
 								if (preg_match("/\b50[0-5]\b/", $line)) echo '<tr class="table-danger">'; else echo '<tr>';						
 								echo "<td>" .$line_num . "</td><td> " . substr($line, 0, 20) . "</td><td>" . substr($line, 20) . "</td>";
@@ -51,12 +51,12 @@
 								}
 								echo "</tr>\n";
 							}
-							
+						}
 						?>
 					</tbody>
-				</table>	
+				</table>
 				</div>
-			</div>	
+			</div>
 
 			
 	
